@@ -17,30 +17,59 @@ for (i = 0; i < close.length; i++) {
     }
 }
 var list =  document.querySelector("ul")
-list.addEventListener("click", function(event){
-   if(event.target.tagName === "li"){
-        event.target.classList.toggle("checked");
+list.addEventListener("click", function(ev){
+   if(ev.target.tagName === "li"){
+        ev.target.classList.toggle("checked");
    }
 },false);
 
-function newItem(){
-    var li = document.getCreateElement("li")
+function newItem() {
+    var li = document.createElement("li");
     var inputValue = document.getElementById("itemadd").value;
-    var t = document.createTextNode(inputValue)
+    var t = document.createTextNode(inputValue);
     li.appendChild(t);
-    if(inputValue===""){
-        alert("You MUST write something in that box before pressing that button");
+    if (inputValue === '') {
+      alert("You must write something!");
+    } else {
+      document.getElementById("myUl").appendChild(li);
     }
-    else{
-        document.getElementById("myUl").append("li");
-    }
-    document.getElementById(itemadd).value="";
-    var span = document.createElement("span");
-    var text = document.createTextNode("x");
-    span.classNode="close";
-    span.appendChild(text);
-    li.appendChild(span);
-    for(i = 0; i < close.length; i++){
+    document.getElementById("itemadd").value = "";
 
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+      }
     }
-}
+  } 
+// function newItem() {
+//     var li = document.createElement("li");
+//     var inputValue = document.getElementById("itemadd").value;
+//     var t = document.createTextNode(inputValue);
+//     li.appendChild(t);
+//     if (inputValue === '') {
+//       alert("You must write something!");
+//     } else {
+//       document.getElementById("myUl").appendChild(li);
+//     }
+//     document.getElementById("itemadd").value = "";
+  
+//     var span = document.createElement("SPAN");
+//     var txt = document.createTextNode("\u00D7");
+//     span.className = "close";
+//     span.appendChild(txt);
+//     li.appendChild(span);
+  
+//     for (i = 0; i < close.length; i++) {
+//       close[i].onclick = function() {
+//         var div = this.parentElement;
+//         div.style.display = "none";
+//       }
+//     }
+//   } 
